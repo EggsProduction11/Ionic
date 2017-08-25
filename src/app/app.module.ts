@@ -6,10 +6,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LocationSelectPage } from '../pages/location-select/location-select';
+import { ConnectivityServiceProvider } from '../providers/connectivity-service/connectivity-service';
+import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
+import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ListPage } from '../pages/list/list';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
+    LocationSelectPage,
+    ListPage,
     HomePage
   ],
   imports: [
@@ -19,12 +29,18 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ListPage,
+    LocationSelectPage,
     HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Network,
+    Geolocation,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConnectivityServiceProvider,
+    GoogleMapsProvider
   ]
 })
 export class AppModule {}
